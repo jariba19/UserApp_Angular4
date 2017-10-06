@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>{{userTitle}}</h1>
+    </div>
+  </div>
+  <br>
+  <br>
+  <form [(formGroup)] = "userForm" (ngSubmit)="saveUser()">
+    <div class="form-group">
+
+      <div class="row">
+        <div class="col-sm-1 col-offset-1">
+          <label class="label label-default" for="">Name</label>
+        </div>
+        <div class="col-sm-3">
+          <input formControlName="name" type="text" class="form-control" required />
+        </div>
+        <div class="col-sm-1 col-offset-1">
+            <label class="label label-default" for="">Birthdate</label>
+        </div>
+        <div class="col-sm-3">
+            <input formControlName="birthdate" type="date" class="form-control" required />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-4">
+            <button type="sumbit" class="btn btn-primary" [disabled]="!userForm.valid">Save</button>  
+            <button type="button" class="btn btn-primary" (click)="redirectUsersListPage()">Back</button>  
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
