@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class UserListComponent implements OnInit {
 
   private users: User[];
-
+  private filteredUsers: User[];
   constructor(private router: Router,
               private userService: UserService) { 
     this.getAllUsers();
@@ -26,6 +26,7 @@ export class UserListComponent implements OnInit {
     this.userService.findAll().subscribe(
       users => {
         this.users = users;
+        this.filteredUsers = users;
       },
       err => {
         console.log(err);
@@ -48,4 +49,19 @@ export class UserListComponent implements OnInit {
     this.getAllUsers();
   }
 
+  assignCopy(){
+    this.filteredUsers = Object.assign([], this.users);
+  }
+  filterItem(value, prop){
+      if(!value) this.assignCopy(); //when nothing has typed
+
+      if (prop == "name")
+        this.filteredUsers = Object.assign([], this.users).filter(
+          item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+        )
+      else
+        this.filteredUsers = Object.assign([], this.users).filter(
+          item => item.birthdate.toLowerCase().indexOf(value.toLowerCase()) > -1
+        )
+  }
 }
