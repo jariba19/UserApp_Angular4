@@ -29,7 +29,7 @@ export class UserListComponent implements OnInit {
         this.filteredUsers = users;
       },
       err => {
-        console.log(err);
+        //alert.
       }
     );
   }
@@ -52,16 +52,12 @@ export class UserListComponent implements OnInit {
   assignCopy(){
     this.filteredUsers = Object.assign([], this.users);
   }
-  filterItem(value, prop){
-      if(!value) this.assignCopy(); //when nothing has typed
+  filterItem(valueId, valueName, valueBirth){
+      if(!valueId && !valueName && !valueName) this.assignCopy(); //when nothing has typed
 
-      if (prop == "name")
-        this.filteredUsers = Object.assign([], this.users).filter(
-          item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
-        )
-      else
-        this.filteredUsers = Object.assign([], this.users).filter(
-          item => item.birthdate.toLowerCase().indexOf(value.toLowerCase()) > -1
-        )
+      this.filteredUsers = Object.assign([], this.users)
+        .filter(item => (item.id).toString().indexOf(valueId) > -1)
+        .filter(item => item.name.toLowerCase().indexOf(valueName.toLowerCase()) > -1)
+        .filter(item => item.birthdate.toLowerCase().indexOf(valueBirth.toLowerCase()) > -1);
   }
 }

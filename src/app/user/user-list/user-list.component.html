@@ -32,9 +32,9 @@
           </thead>
           <tbody>
             <tr>
-                <th></th>
-                <th><input class="form-control" #myName [(ngModel)]="name" (input)="filterItem(myName.value, 'name')"></th>
-                <th><input class="form-control" #myBirthdate [(ngModel)]="birthdate" (input)="filterItem(myBirthdate.value, 'birthdate')"></th>
+                <th><input class="form-control" #myId [(ngModel)]="id" (input)="filterItem(myId.value, myName.value, myBirthdate.value)"></th>
+                <th><input class="form-control" #myName [(ngModel)]="name" (input)="filterItem(myId.value, myName.value, myBirthdate.value)"></th>
+                <th><input class="form-control" #myBirthdate [(ngModel)]="birthdate" (input)="filterItem(myId.value, myName.value, myBirthdate.value)"></th>
                 <th></th>
             </tr>
             <tr *ngFor="let user of filteredUsers">
